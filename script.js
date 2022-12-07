@@ -23,6 +23,12 @@ function playGround(playerSelection1, computerSelection){
     return "You win! Scissors beats Paper";
 }
 
-const playerSelection = "scissors";
-const computerSelection = getComputerChoice();
-console.log(playGround(playerSelection, computerSelection));
+function game(){
+    for(let i = 0; i < 5; ++i){
+        let playerSelection = prompt("Enter your choice");
+        let computerSelection = getComputerChoice();
+        console.log(playGround(playerSelection, computerSelection));
+    }
+    
+}
+game();
