@@ -32,6 +32,7 @@ let container = document.querySelector("#container");
 let buttons = [];
 let resultDisplay = document.createElement("div");
 resultDisplay.textContent = "Welcome to Rock Paper Scissors game";
+resultDisplay.id = "resultDisplay";
 
 let playerScoreBoard = document.createElement("div");
 let computerScoreBoard = document.createElement("div");
@@ -42,16 +43,30 @@ computerScoreBoard.textContent = `Computer score: ${computerScore}`;
 playerScoreBoard.id = "playerScoreBoard";
 computerScoreBoard.id = "computerScoreBoard";
 
-function displayResult(result){
+function check(score, winner){
+    if(score >= 5){
+        for(let i = 0; i < 3; ++i){
+            buttons[i].removeEventListener("click", displayResult);
+        }
+        let announcement = document.createElement("div");
+        announcement.textContent = winner + " is the winner!!";
+        container.appendChild(announcement);
+    }
+}
+
+function displayResult(e){
+    let result = game(e.target.id);
     resultDisplay.textContent = result;
     if(result == "Tie")
         return;
     if(result[4] == "w"){
         playerScore++;
         playerScoreBoard.textContent = `Your score: ${playerScore}`;
+        check(playerScore, "You");
     }else{
         computerScore++;
         computerScoreBoard.textContent = `Computer score: ${computerScore}`;
+        check(computerScore, "Computer");
     }
 }
 
@@ -61,10 +76,7 @@ for(let i = 0 ; i < 3; ++i){
     buttons[i].setAttribute("type", "button");
     buttons[i].setAttribute("value", choice[i]);
     buttons[i].textContent = choice[i];
-    buttons[i].addEventListener("click", (e) => {
-        displayResult(game(e.target.id));
-        check();
-    })
+    buttons[i].addEventListener("click", displayResult);
     container.appendChild(buttons[i]);
 }
 
