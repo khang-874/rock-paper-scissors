@@ -49,6 +49,9 @@ announcement.id = "announcement";
 let computerChoiceDisplay = document.createElement("div");
 computerChoiceDisplay.id = "computerChoiceDisplay";
 
+let playerChoiceDisplay = document.createElement("div");
+playerChoiceDisplay.id = "playerChoiceDisplay";
+
 function check(score, winner){
     if(score >= 5){
         for(let i = 0; i < 3; ++i){
@@ -58,9 +61,11 @@ function check(score, winner){
         announcement.textContent = winner + " are the winner!!";
         resetButton.addEventListener("click", reset);
         container.appendChild(announcement);
+        container.removeChild(computerChoiceDisplay);
         container.removeChild(container.querySelector('#playerScoreBoard'));
         container.removeChild(container.querySelector('#computerScoreBoard'));
         container.removeChild(container.querySelector('#resultDisplay'));
+        container.removeChild(playerChoiceDisplay);
         container.appendChild(resetButton);
     }
 }
@@ -76,6 +81,10 @@ function reset(e){
     playerScoreBoard.textContent = "Your score: 0";
     computerScoreBoard.textContent = "Computer score: 0";
     resultDisplay.textContent = "Welcome to Rock Scissor Paper game";
+    playerChoiceDisplay.textContent = "";
+    computerChoiceDisplay.textContent = "";
+    container.appendChild(playerChoiceDisplay);
+    container.appendChild(computerChoiceDisplay);
     container.appendChild(resultDisplay);
     container.appendChild(playerScoreBoard);
     container.appendChild(computerScoreBoard);
@@ -84,7 +93,8 @@ function displayResult(e){
     let computerChoice = getComputerChoice();
     console.log(e.target.id);
     console.log(computerChoice);
-    computerChoiceDisplay.textContent = computerChoice;
+    playerChoiceDisplay.textContent = "You choose: " + e.target.id;
+    computerChoiceDisplay.textContent = "Computer choose: " + computerChoice;
     result = playGround(e.target.id, computerChoice);
     resultDisplay.textContent = result;
     if(result == "Tie")
@@ -113,6 +123,7 @@ for(let i = 0 ; i < 3; ++i){
 }
 
 container.appendChild(choiceContainer);
+container.appendChild(playerChoiceDisplay);
 container.appendChild(computerChoiceDisplay);
 container.appendChild(resultDisplay);
 container.appendChild(playerScoreBoard);

@@ -1,7 +1,7 @@
 #choiceContainer{
     display:flex;
     margin: 0;
-    width: 100vw;
+    width: 90vw;
     justify-content: center;
     align-items: center;
     gap: 10%;
@@ -11,13 +11,13 @@
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
-    height: 50vh;;
+    margin-top: 10vh;
+    height: 90vh;
     font-size: 24px;
     font-weight: 300;
-    width: 100vw;
+    width: 90vw;
     gap: 25px;
 }
 
