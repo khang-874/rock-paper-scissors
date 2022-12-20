@@ -50,7 +50,11 @@ function check(score, winner){
         }
         let announcement = document.createElement("div");
         announcement.textContent = winner + " is the winner!!";
+        announcement.id = "announcement";
         container.appendChild(announcement);
+        container.removeChild(container.querySelector('#playerScoreBoard'));
+        container.removeChild(container.querySelector('#computerScoreBoard'));
+        container.removeChild(container.querySelector('#resultDisplay'));
     }
 }
 
