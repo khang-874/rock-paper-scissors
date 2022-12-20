@@ -23,12 +23,21 @@ function playGround(playerSelection1, computerSelection){
     return "You win! Scissors beats Paper";
 }
 
-function game(){
-    for(let i = 0; i < 5; ++i){
-        let playerSelection = prompt("Enter your choice");
-        let computerSelection = getComputerChoice();
-        console.log(playGround(playerSelection, computerSelection));
-    }
-    
+function game(playerSelection){
+    let computerSelection = getComputerChoice();
+    return playGround(playerSelection, computerSelection);
 }
-game();
+
+let container = document.querySelector("#container");
+let buttons = [];
+for(let i = 0 ; i < 3; ++i){
+    buttons.push(document.createElement("button"));
+    buttons[i].id = choice[i];
+    buttons[i].setAttribute("type", "button");
+    buttons[i].setAttribute("value", choice[i]);
+    buttons[i].textContent = choice[i];
+    buttons[i].addEventListener("click", (e) => {
+        console.log(e.target.id);
+    })
+    container.appendChild(buttons[i]);
+}
